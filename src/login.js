@@ -10,20 +10,24 @@ export default function Login() {
 		<div>
 			{" "}
 			<div className="todoList">ToDo-List</div>
-			<div className="loginRectangle">
-				<div className="loginTitle">Login</div>
+			<div className="loginRegisterRectangle">
+				<div className="titleAccount">Login</div>
 				<div className="gridEmailPassword">
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<input
-							{...register("firstName", {
+							{...register("username", {
 								required: true,
 								maxLength: 20,
+								placeholder: "test",
 							})}
+							placeholder="Email or Username"
 						/>
 						<input
-							{...register("lastName", {
+							{...register("password", {
 								pattern: /^[A-Za-z]+$/i,
 							})}
+							placeholder="Password"
+							type="password"
 						/>
 						<input className="submit" type="submit" value="Login" />
 					</form>
