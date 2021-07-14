@@ -17,6 +17,20 @@ export default function TodoListAll() {
 		return outputDateFormatted;
 	}
 
+	function calculateCompleteUncompleteAllTasks(e) {
+		let countAll = e.length;
+		let countIsDone = e.filter((value) => value.isDone === true).length;
+		let countIsNotDone = countAll - countIsDone;
+		return (
+			"Completed: " +
+			countIsDone +
+			" Uncompleted: " +
+			countIsNotDone +
+			" All: " +
+			countAll
+		);
+	}
+
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => console.log(data);
 
@@ -48,10 +62,10 @@ export default function TodoListAll() {
 										{dateFormatter(item[1].created_at)}
 									</div>
 									<div className="counter">
-										completed / uncompleted / ALL
+										{calculateCompleteUncompleteAllTasks(
+											item[1].task
+										)}
 									</div>
-									<br />
-									whole obejct: {JSON.stringify(item)}
 								</li>
 							</div>
 						))}

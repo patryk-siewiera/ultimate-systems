@@ -32,6 +32,11 @@ li {
 	border-radius: 8px;
 }
 
+li:hover {
+	background: #797171;
+	cursor: pointer;
+}
+
 .maxWidthList {
 	max-width: 80%;
 	margin: auto;
