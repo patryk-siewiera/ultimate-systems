@@ -4,13 +4,22 @@ import { useForm } from "react-hook-form";
 import { mockData } from "./mockData.js";
 
 export default function TodoListAll() {
+	function dateFormatter(e) {
+		let outputDate = new Date(Date.parse(e));
+		let day = outputDate.toLocaleDateString("pl-PL", { day: "numeric" });
+		day = day.length !== 1 ? day : "0" + day;
+		let month = outputDate.toLocaleDateString("pl-PL", {
+			month: "numeric",
+		});
+		month = month.length !== 1 ? month : "0" + month;
+		let year = outputDate.toLocaleDateString("pl-PL", { year: "numeric" });
+		let outputDateFormatted = day + "-" + month + "-" + year;
+		return outputDateFormatted;
+	}
+
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => console.log(data);
 
-	// remove later
-	const arr = JSON.stringify(mockData, null, 2);
-
-	// remove above
 	return (
 		<div>
 			<div className="todoList">ToDo-List</div>
@@ -27,14 +36,23 @@ export default function TodoListAll() {
 					<option value="ZA">Z-&gt;A</option>
 				</select>
 				<div className="text-white mt-44 ">
-					{/* {mockData.map((element) => (
-					<div>{element}</div>
-				))} */}
-					{/* {JSON.stringify(mockData[1].task[0])} */}
 					<ul>
 						{Object.entries(mockData).map((item) => (
 							<div>
-								<li>{JSON.stringify(item)} </li>
+								<li>
+									<div className="listName">
+										{item[1].name}
+									</div>
+									<div className="createdAt">
+										Created at:{" "}
+										{dateFormatter(item[1].created_at)}
+									</div>
+									<div className="counter">
+										completed / uncompleted / ALL
+									</div>
+									<br />
+									whole obejct: {JSON.stringify(item)}
+								</li>
 							</div>
 						))}
 					</ul>
