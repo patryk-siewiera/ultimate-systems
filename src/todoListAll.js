@@ -37,6 +37,9 @@ export default function TodoListAll() {
 
 	const [search, setSearch] = useState("");
 	const [sortBy, setSortBy] = useState("unordered");
+	console.log("====================================");
+	console.log(search);
+	console.log("====================================");
 
 	return (
 		<div>
@@ -56,31 +59,41 @@ export default function TodoListAll() {
 					onChange={(e) => setSortBy(e.target.value)}
 				>
 					<option value="unordered">unordered</option>
-					<option value="AZ">A&gt;-Z alphabetical</option>
+					<option value="AZ">A-&gt;Z alphabetical</option>
 					<option value="ZA">Z-&gt;A</option>
 				</select>
 				<div className="text-white mt-44 ">
 					<ul>
-						{Object.entries(mockData).map((item) => (
-							<div>
-								<li>
-									<div className="gridInside">
-										<div className="listName">
-											{item[1].name}
+						{Object.entries(mockData)
+							.filter((item) => {
+								return (
+									item[1].name
+										.toLowerCase()
+										.indexOf(search.toLowerCase()) >= 0
+								);
+							})
+							.map((item) => (
+								<div>
+									<li>
+										<div className="gridInside">
+											<div className="listName">
+												{item[1].name}
+											</div>
+											<div className="createdAt">
+												Created at:{" "}
+												{dateFormatter(
+													item[1].created_at
+												)}
+											</div>
+											<div className="counter">
+												{calculateCompleteUncompleteAllTasks(
+													item[1].task
+												)}
+											</div>
 										</div>
-										<div className="createdAt">
-											Created at:{" "}
-											{dateFormatter(item[1].created_at)}
-										</div>
-										<div className="counter">
-											{calculateCompleteUncompleteAllTasks(
-												item[1].task
-											)}
-										</div>
-									</div>
-								</li>
-							</div>
-						))}
+									</li>
+								</div>
+							))}
 					</ul>
 				</div>
 			</div>
