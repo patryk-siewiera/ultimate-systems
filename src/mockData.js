@@ -24,7 +24,6 @@ const mockData = [
 			},
 		],
 	},
-
 	{
 		id: 86,
 		name: "my list",
@@ -61,8 +60,43 @@ const mockData = [
 		],
 	},
 	{
+		id: 86,
+		name: "aaa my list",
+		user: {
+			id: 64,
+			username: "user1",
+			email: "user@wp.pl",
+			provider: "local",
+			confirmed: true,
+			blocked: null,
+			role: 1,
+			created_at: "2021-07-12T19:16:28.000Z",
+			updated_at: "2021-07-12T19:16:28.000Z",
+		},
+		published_at: "2021-07-14T06:31:24.000Z",
+		created_at: "2021-07-14T06:31:24.000Z",
+		updated_at: "2021-07-14T06:31:25.000Z",
+		task: [
+			{
+				id: 132,
+				name: "task1",
+				isDone: true,
+			},
+			{
+				id: 133,
+				name: "task2",
+				isDone: true,
+			},
+			{
+				id: 134,
+				name: "task3",
+				isDone: false,
+			},
+		],
+	},
+	{
 		id: 87,
-		name: "my list",
+		name: "zzz my list",
 		user: {
 			id: 64,
 			username: "user1",

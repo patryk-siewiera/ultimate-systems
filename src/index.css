@@ -28,6 +28,7 @@ body {
 	font-size: 64px;
 	line-height: 64px;
 	color: #ff9900;
+	cursor: pointer;
 }
 
 .loginRegisterRectangle {

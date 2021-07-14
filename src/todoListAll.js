@@ -1,7 +1,8 @@
 import React from "react";
 import "./todoListAll.css";
 import { useForm } from "react-hook-form";
-import { mockData } from "./mockData.js";
+import { mockData } from "./mockData2.js";
+import { useState } from "react";
 
 export default function TodoListAll() {
 	function dateFormatter(e) {
@@ -34,6 +35,9 @@ export default function TodoListAll() {
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => console.log(data);
 
+	const [search, setSearch] = useState("");
+	const [sortBy, setSortBy] = useState("unordered");
+
 	return (
 		<div>
 			<div className="todoList">ToDo-List</div>
@@ -41,12 +45,18 @@ export default function TodoListAll() {
 			<div className="maxWidthList">
 				<input
 					{...register("search", {})}
-					placeholder="Search"
+					placeholder="Search..."
 					type="text"
 					className="searchInput"
+					onChange={(e) => setSearch(e.target.value)}
 				/>
-				<select id="sortBy" className="dropdown">
-					<option value="AZ">A&lt;-Z alfabetycznie</option>
+				<select
+					id="sortBy"
+					className="dropdown"
+					onChange={(e) => setSortBy(e.target.value)}
+				>
+					<option value="unordered">unordered</option>
+					<option value="AZ">A&gt;-Z alphabetical</option>
 					<option value="ZA">Z-&gt;A</option>
 				</select>
 				<div className="text-white mt-44 ">
@@ -54,17 +64,19 @@ export default function TodoListAll() {
 						{Object.entries(mockData).map((item) => (
 							<div>
 								<li>
-									<div className="listName">
-										{item[1].name}
-									</div>
-									<div className="createdAt">
-										Created at:{" "}
-										{dateFormatter(item[1].created_at)}
-									</div>
-									<div className="counter">
-										{calculateCompleteUncompleteAllTasks(
-											item[1].task
-										)}
+									<div className="gridInside">
+										<div className="listName">
+											{item[1].name}
+										</div>
+										<div className="createdAt">
+											Created at:{" "}
+											{dateFormatter(item[1].created_at)}
+										</div>
+										<div className="counter">
+											{calculateCompleteUncompleteAllTasks(
+												item[1].task
+											)}
+										</div>
 									</div>
 								</li>
 							</div>
