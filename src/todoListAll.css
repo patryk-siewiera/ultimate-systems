@@ -1,0 +1,26 @@
+.logout {
+	color: white;
+	position: absolute;
+	right: 68px;
+	top: 2rem;
+	font-size: 3rem;
+	cursor: pointer;
+}
+.searchInput {
+	width: 20%;
+	position: relative;
+	top: 10rem;
+	right: 14rem;
+	height: 4rem;
+	font-size: 2rem;
+	cursor: text;
+}
+
+.dropdown {
+	width: 20%;
+	height: 4rem;
+	position: relative;
+	top: 10rem;
+	left: 14rem;
+	font-size: 2rem;
+}
