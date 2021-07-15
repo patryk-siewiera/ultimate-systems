@@ -7,9 +7,9 @@ import TodoListAll from "./todoListAll";
 
 ReactDOM.render(
 	<React.StrictMode>
-		{/* <Login /> */}
+		<Login />
 		{/* <Register /> */}
-		<TodoListAll />
+		{/* <TodoListAll /> */}
 	</React.StrictMode>,
 	document.getElementById("root")
 );

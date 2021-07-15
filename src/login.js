@@ -29,10 +29,16 @@ export default function Login() {
 							placeholder="Password"
 							type="password"
 						/>
-						<input className="submit" type="submit" value="Login" />
+						<div>
+							<input
+								className="submit"
+								type="submit"
+								value="Login"
+							/>
+						</div>{" "}
 					</form>
 					<div className="or">or</div>
-					<div className="createAccount">create an account</div>
+					<div id="createAccount">create an account</div>
 				</div>
 			</div>
 		</div>
