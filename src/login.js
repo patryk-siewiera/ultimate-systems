@@ -11,20 +11,13 @@ const data0 = {
 };
 
 function login(data) {
-	return fetch("https://recruitment.ultimate.systems/auth/local", {
+	return fetch(`${basePath}/auth/local`, {
 		method: "POST",
 		headers: {
-			accept: "application/json",
-			"Content-Type": "application/json",
+			"Content-type": "application/json",
 		},
-		body: data,
-	})
-		.then((response) => {
-			console.log(response);
-		})
-		.catch((err) => {
-			console.error(err);
-		});
+		body: JSON.stringify(data),
+	}).then((r) => r.json());
 }
 
 // ----- end of api.js
@@ -32,11 +25,10 @@ function login(data) {
 export default function Login({ onLogin }) {
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => {
-		data = JSON.stringify(data);
 		login(data).then((loginResponse) => {
-			// onLogin(loginResponse["jwt"]); // from insomnia
+			console.log("logged succesfully")
+			onLogin(loginResponse); // from insomnia
 		});
-		console.log(data);
 	};
 
 	return (
@@ -49,13 +41,15 @@ export default function Login({ onLogin }) {
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<input
 							{...register("identifier", {
-								maxLength: 20,
 								required: true,
+								maxLength: 20,
 							})}
 							placeholder="Email or Username"
 						/>
 						<input
-							{...register("password", { required: true })}
+							{...register("password", {
+								required: true,
+							})}
 							placeholder="Password"
 							type="password"
 						/>
