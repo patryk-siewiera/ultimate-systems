@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./login.css";
 
@@ -26,8 +26,13 @@ export default function Login({ onLogin }) {
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => {
 		login(data).then((loginResponse) => {
-			console.log("logged succesfully")
-			onLogin(loginResponse); // from insomnia
+			onLogin(loginResponse["jwt"]); // from insomnia
+
+			if (loginResponse["jwt"] === undefined) {
+				alert("Login or password incorrect - try again");
+			} else {
+				alert("Logged Succesfuly");
+			}
 		});
 	};
 
