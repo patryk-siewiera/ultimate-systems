@@ -1,11 +1,43 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Api } from "./api";
 import "./login.css";
 
-export default function Login() {
+// -----move this later to api.js
+const basePath = "https://recruitment.ultimate.systems";
+
+const data0 = {
+	identifier: "testUser55",
+	password: "testUser15",
+};
+
+function login(data) {
+	return fetch("https://recruitment.ultimate.systems/auth/local", {
+		method: "POST",
+		headers: {
+			accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		body: data,
+	})
+		.then((response) => {
+			console.log(response);
+		})
+		.catch((err) => {
+			console.error(err);
+		});
+}
+
+// ----- end of api.js
+
+export default function Login({ onLogin }) {
 	const { register, handleSubmit } = useForm();
-	const onSubmit = (data) => console.log(data);
+	const onSubmit = (data) => {
+		data = JSON.stringify(data);
+		login(data).then((loginResponse) => {
+			// onLogin(loginResponse["jwt"]); // from insomnia
+		});
+		console.log(data);
+	};
 
 	return (
 		<div>
@@ -16,17 +48,14 @@ export default function Login() {
 				<div className="gridEmailPassword">
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<input
-							{...register("username", {
-								required: true,
+							{...register("identifier", {
 								maxLength: 20,
-								placeholder: "test",
+								required: true,
 							})}
 							placeholder="Email or Username"
 						/>
 						<input
-							{...register("password", {
-								pattern: /^[A-Za-z]+$/i,
-							})}
+							{...register("password", { required: true })}
 							placeholder="Password"
 							type="password"
 						/>

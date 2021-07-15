@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./todoListAll.css";
 import { useForm } from "react-hook-form";
 import { mockData } from "./mockData.js";
 
-export default function TodoListAll() {
+export default function TodoListAll({ token }) {
 	// replace this when fetch will be implemented
 	const userData = mockData;
 	// end of comment
@@ -38,6 +38,14 @@ export default function TodoListAll() {
 	const { register, handleSubmit } = useForm();
 	const [search, setSearch] = useState("");
 	const [sortBy, setSortBy] = useState(0);
+
+	const data = useCallback(() => {
+		return new Promise((res) => {
+			const auth = token;
+			// api.getTodos(token)
+			return [{}, {}];
+		});
+	}, []);
 
 	console.log(sortBy);
 
