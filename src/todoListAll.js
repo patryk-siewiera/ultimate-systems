@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./todoListAll.css";
 import { useForm } from "react-hook-form";
 import { mockData } from "./mockData.js";
-import { useState } from "react";
 
 export default function TodoListAll() {
 	function dateFormatter(e) {
@@ -32,18 +31,30 @@ export default function TodoListAll() {
 		);
 	}
 
-	function sortAlphabetical(e) {
-		e.sort((a, b) => (a[1].name > b[1].name ? 1 : -1));
-		return e;
-	}
-
 	const { register, handleSubmit } = useForm();
-	const onSubmit = (data) => console.log(data);
-
 	const [search, setSearch] = useState("");
-	const [sortBy, setSortBy] = useState("unordered");
+	const [sortBy, setSortBy] = useState(0);
 
 	console.log(sortBy);
+
+	const [visibleData, setVisibleData] = useState([]);
+
+	useEffect(() => {
+		const data = Object.entries(mockData)
+			.filter((item) => {
+				return (
+					item[1].name.toLowerCase().indexOf(search.toLowerCase()) >=
+					0
+				);
+			})
+			.sort((a, b) => {
+				const str1 = a[1].name.toString();
+				const str2 = b[1].name.toString();
+				if (str1 === str2 || sortBy === 0) return 0;
+				return (str1 > str2 ? 1 : -1) * sortBy;
+			});
+		setVisibleData(data);
+	}, [search, sortBy, mockData]);
 
 	return (
 		<div>
@@ -62,45 +73,32 @@ export default function TodoListAll() {
 					className="dropdown"
 					onChange={(e) => setSortBy(e.target.value)}
 				>
-					{/* unordered should be sorted by id */}
-					<option value="unordered">Unordered</option>
-					{/* alphabetical - sorted by .name */}
-					<option value="1">A-&gt;Z alphabetical</option>
-					<option value="0">Z-&gt;A</option>
+					<option value={0}>Unordered</option>
+					<option value={1}>A-&gt;Z alphabetical</option>
+					<option value={-1}>Z-&gt;A</option>
 				</select>
-
 				<div className="text-white mt-44 ">
 					<ul>
-						{Object.entries(mockData)
-							.filter((item) => {
-								return (
-									item[1].name
-										.toLowerCase()
-										.indexOf(search.toLowerCase()) >= 0
-								);
-							})
-							.map((item) => (
-								<div>
-									<li>
-										<div className="gridInside">
-											<div className="listName">
-												{item[1].name}
-											</div>
-											<div className="createdAt">
-												Created at:{" "}
-												{dateFormatter(
-													item[1].created_at
-												)}
-											</div>
-											<div className="counter">
-												{calculateCompleteUncompleteAllTasks(
-													item[1].task
-												)}
-											</div>
+						{visibleData.map((item) => (
+							<div>
+								<li>
+									<div className="gridInside">
+										<div className="listName">
+											{item[1].name}
 										</div>
-									</li>
-								</div>
-							))}
+										<div className="createdAt">
+											Created at:{" "}
+											{dateFormatter(item[1].created_at)}
+										</div>
+										<div className="counter">
+											{calculateCompleteUncompleteAllTasks(
+												item[1].task
+											)}
+										</div>
+									</div>
+								</li>
+							</div>
+						))}
 					</ul>
 				</div>
 			</div>
