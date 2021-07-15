@@ -4,6 +4,10 @@ import { useForm } from "react-hook-form";
 import { mockData } from "./mockData.js";
 
 export default function TodoListAll() {
+	// replace this when fetch will be implemented
+	const userData = mockData;
+	// end of comment
+
 	function dateFormatter(e) {
 		let outputDate = new Date(Date.parse(e));
 		let day = outputDate.toLocaleDateString("pl-PL", { day: "numeric" });
@@ -40,7 +44,7 @@ export default function TodoListAll() {
 	const [visibleData, setVisibleData] = useState([]);
 
 	useEffect(() => {
-		const data = Object.entries(mockData)
+		const data = Object.entries(userData)
 			.filter((item) => {
 				return (
 					item[1].name.toLowerCase().indexOf(search.toLowerCase()) >=
@@ -54,7 +58,7 @@ export default function TodoListAll() {
 				return (str1 > str2 ? 1 : -1) * sortBy;
 			});
 		setVisibleData(data);
-	}, [search, sortBy, mockData]);
+	}, [search, sortBy]);
 
 	return (
 		<div>
