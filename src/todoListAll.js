@@ -1,7 +1,7 @@
 import React from "react";
 import "./todoListAll.css";
 import { useForm } from "react-hook-form";
-import { mockData } from "./mockData2.js";
+import { mockData } from "./mockData.js";
 import { useState } from "react";
 
 export default function TodoListAll() {
@@ -32,14 +32,18 @@ export default function TodoListAll() {
 		);
 	}
 
+	function sortAlphabetical(e) {
+		e.sort((a, b) => (a[1].name > b[1].name ? 1 : -1));
+		return e;
+	}
+
 	const { register, handleSubmit } = useForm();
 	const onSubmit = (data) => console.log(data);
 
 	const [search, setSearch] = useState("");
 	const [sortBy, setSortBy] = useState("unordered");
-	console.log("====================================");
-	console.log(search);
-	console.log("====================================");
+
+	console.log(sortBy);
 
 	return (
 		<div>
@@ -58,10 +62,13 @@ export default function TodoListAll() {
 					className="dropdown"
 					onChange={(e) => setSortBy(e.target.value)}
 				>
-					<option value="unordered">unordered</option>
-					<option value="AZ">A-&gt;Z alphabetical</option>
-					<option value="ZA">Z-&gt;A</option>
+					{/* unordered should be sorted by id */}
+					<option value="unordered">Unordered</option>
+					{/* alphabetical - sorted by .name */}
+					<option value="1">A-&gt;Z alphabetical</option>
+					<option value="0">Z-&gt;A</option>
 				</select>
+
 				<div className="text-white mt-44 ">
 					<ul>
 						{Object.entries(mockData)
