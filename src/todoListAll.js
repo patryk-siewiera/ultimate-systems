@@ -141,7 +141,9 @@ export default function TodoListAll({ token, onLogout }) {
 										</div>
 										<div className="createdAt">
 											Created at:{" "}
-											{dateFormatter(item[1].created_at)}
+											{dateFormatter(
+												item[1].published_at
+											)}
 										</div>
 										<div className="counter">
 											{calculateCompleteUncompleteAllTasks(
