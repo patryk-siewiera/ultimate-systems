@@ -49,7 +49,6 @@ export default function Login({ onLogin, setJwtToken }) {
 				return isAuthenticated;
 			} else {
 				isAuthenticated = true;
-				alert("Logged Succesfuly");
 				// hook use history
 				const token = loginResponse["jwt"];
 				setJwtToken(token);

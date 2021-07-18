@@ -7,7 +7,8 @@ import { useHistory } from "react-router-dom";
 
 export default function TodoListAll({ token, onLogout }) {
 	// replace this when fetch will be implemented
-	const userData = mockData;
+	const [userData, setUserData] = useState([]);
+	// const userData = mockData;
 	// end of comment
 
 	function dateFormatter(e) {
@@ -30,7 +31,6 @@ export default function TodoListAll({ token, onLogout }) {
 		return (
 			"Completed: " +
 			countIsDone +
-			2 +
 			" Uncompleted: " +
 			countIsNotDone +
 			" All: " +
@@ -43,6 +43,13 @@ export default function TodoListAll({ token, onLogout }) {
 	const [sortBy, setSortBy] = useState(0);
 
 	const history = useHistory();
+
+	useEffect(() => {
+		const Udata = getLists(token); // dodac await i linjka wyzej bedzie juz console.log(Udata)
+		Udata.then((response) => {
+			setUserData(response);
+		});
+	}, []);
 
 	useEffect(() => {
 		if (token === "") {
@@ -58,7 +65,6 @@ export default function TodoListAll({ token, onLogout }) {
 		});
 	}, []);
 
-	console.log(sortBy);
 
 	const [visibleData, setVisibleData] = useState([]);
 
@@ -77,7 +83,7 @@ export default function TodoListAll({ token, onLogout }) {
 				return (str1 > str2 ? 1 : -1) * sortBy;
 			});
 		setVisibleData(data);
-	}, [search, sortBy]);
+	}, [userData, search, sortBy]);
 
 	return (
 		<div>
@@ -131,10 +137,7 @@ export default function TodoListAll({ token, onLogout }) {
 							</div>
 						))}
 					</ul>
-					<div className="text-white">
-						{console.log(token)}
-						{/* {getLists(token)} */}
-					</div>
+					{/* <div className="text-white">{getLists(token)}</div> */}
 				</div>
 			</div>
 		</div>
