@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function Register() {
 	const { register, handleSubmit } = useForm();
@@ -9,7 +10,9 @@ export default function Register() {
 		<div>
 			<div className="todoList">ToDo-List</div>
 			<div className="loginRegisterRectangle">
-				<div className="goBack">&lt;-</div>
+				<Link to="/login">
+					<div className="goBack">&lt;-</div>
+				</Link>
 				<div className="titleAccount">Create new account</div>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<input
@@ -42,7 +45,13 @@ export default function Register() {
 						placeholder="Repeat password"
 						type="password"
 					/>
-					<input className="submit" type="submit" value="Create" />
+					<div>
+						<input
+							className="submit"
+							type="submit"
+							value="Create"
+						/>
+					</div>
 				</form>
 			</div>
 		</div>

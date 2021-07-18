@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./login.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // -----move this later to api.js
 const basePath = "https://recruitment.ultimate.systems";
@@ -67,7 +68,9 @@ export default function Login({ onLogin }) {
 						</div>{" "}
 					</form>
 					<div className="or">or</div>
-					<div id="createAccount">create an account</div>
+					<Link to="/register">
+						<div id="createAccount">create an account</div>
+					</Link>
 				</div>
 			</div>
 		</div>

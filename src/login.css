@@ -56,6 +56,7 @@ form {
 	line-height: 28px;
 	color: #ffffff;
 	padding-top: 30px;
+	margin-bottom: 30px;
 }
 
 #createAccount {
@@ -63,5 +64,4 @@ form {
 	font-weight: 100;
 	font-size: 32px;
 	color: #ff9900;
-	padding-top: 30px;
 }
