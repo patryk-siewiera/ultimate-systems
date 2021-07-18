@@ -51,8 +51,7 @@ body {
 	background-color: #ff3d00;
 	border-radius: 4px;
 	margin-right: 40px;
-	right: 30px;
-	position: fixed;
+	position: static;
 }
 
 .cancelSmall:hover {
@@ -64,7 +63,6 @@ body {
 	background-color: #ff9900;
 	border-radius: 4px;
 	right: 300px;
-	position: fixed;
 }
 
 .addSmall:hover {
@@ -77,7 +75,6 @@ body {
 	border-radius: 4px;
 	left: 0px;
 	bottom: 0px;
-	position: absolute;
 	margin-bottom: 20px;
 	margin-right: 30px;
 }
@@ -92,7 +89,7 @@ body {
 	border-radius: 4px;
 	right: 0px;
 	bottom: 0px;
-	position: absolute;
+	position: relative;
 	margin-bottom: 20px;
 	margin-right: 30px;
 }

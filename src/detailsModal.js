@@ -1,34 +1,47 @@
 import React, { useState } from "react";
 import "./detailsModal.css";
 
-function MapAllTasks({ listDetails }) {
-	const [checked, setChecked] = useState(listDetails[0].isDone);
+function MapAllTasks({ listDetails, onNameChange }) {
+	const [checked, setChecked] = useState(listDetails.isDone);
+	const [name, setName] = useState(listDetails.name);
 	return (
 		<div className="oneTaskGrid">
-			{/* {listDetails} */}
-			{/* {JSON.stringify(listDetails[1])} */}
-
 			<input
 				type="checkbox"
 				className="checkboxOneTask"
 				checked={checked}
 				onClick={() => {
-					listDetails[0].isDone = !listDetails[0].isDone;
-					setChecked(listDetails[0].isDone);
+					listDetails[0].isDone = !listDetails.isDone;
+					setChecked(listDetails.name);
 				}}
 			/>
 			<input
 				type="text"
 				placeholder="Task Name"
 				className="taskName"
-				value={listDetails[0].isDone}
+				value={name}
+				title={listDetails.name}
+				onChange={(ev) => {
+					const nameValue = ev.target.value;
+					listDetails.name = nameValue;
+					onNameChange && onNameChange(nameValue);
+					setName(nameValue);
+				}}
 			/>
 		</div>
 	);
 }
 
+export function deepcopy(obj) {
+	return JSON.parse(JSON.stringify(obj));
+}
+
 export default function DetailsModal(props) {
-	const { details } = props;
+	const { details, onConfirmSave } = props;
+	const [nameList, setNameList] = useState(props?.details?.name);
+	const [tempTasksSublist, setTempTasksSublist] = useState(
+		deepcopy(details.task)
+	);
 	if (!details) {
 		// console.error("error", props);
 		return <>Loading...</>;
@@ -40,18 +53,24 @@ export default function DetailsModal(props) {
 					type="text"
 					className="newTaskInputBox"
 					placeholder="list name"
-					// value={props?.details[1]?.name}
+					value={nameList}
+					onChange={(ev) => {
+						setNameList(ev.target.value);
+						details.name = nameList;
+					}}
 				/>
 			</div>
 			<div className="horizontalLine" />
-			MAP HERE ALL TASKS
-			{/* <pre>{JSON.stringify(details, null, 2)}</pre> */}
 			<div className="allTasks">
-				{JSON.stringify(details)}
-				{/* <MapAllTasks listDetails={details[1].task} /> */}
-				{/* {mapAllTasks()} */}
-				{/* {mapAllTasks()} */}
-				{/* {mapAllTasks()} */}
+				{tempTasksSublist.map((e) => (
+					<MapAllTasks
+						listDetails={e}
+						onNameChange={(name) => {
+							e.name = name;
+							setTempTasksSublist([...tempTasksSublist]);
+						}}
+					/>
+				))}
 			</div>
 			<div className="buttonCancelAdd">
 				<button className="cancelSmall">CANCEL</button>
@@ -61,7 +80,13 @@ export default function DetailsModal(props) {
 				<button className="cancelBottom" onClick={props.onClose}>
 					CANCEL
 				</button>
-				<button className="saveBottom">SAVE</button>
+				<button
+					className="saveBottom"
+					onClick={(ev) => onConfirmSave()}
+					title={JSON.stringify(tempTasksSublist, null, 2)}
+				>
+					SAVE
+				</button>
 			</div>
 		</div>
 	);

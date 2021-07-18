@@ -155,7 +155,6 @@ export default function TodoListAll({ token, onLogout }) {
 					</ul>
 				</div>
 			</div>
-			{/* {console.log(findElementByID(visibleData, "175"))} */}
 			{showDetails && visibleData && (
 				<DetailsModal
 					details={findElementByID(visibleData, id)}
