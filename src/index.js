@@ -4,31 +4,45 @@ import "./index.css";
 import Login from "./login";
 import Register from "./register";
 import TodoListAll from "./todoListAll";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useHistory,
+} from "react-router-dom";
 
 function App() {
-	const [jwtToken, setJwtToken] = useState();
+	const [jwtToken, setJwtToken] = useState("brak");
+	const history = useHistory();
 	return (
 		<React.StrictMode>
+			<pre>{jwtToken}</pre>
 			<Switch>
-				<Route exact path="/login" component={Login} />
+				<Route
+					exact
+					path="/login"
+					render={() => <Login setJwtToken={setJwtToken} />}
+				/>
 				<Route exact path="/register" component={Register} />
-				<Route exact path="/todoListAll" TodoListAll token={jwtToken} />
+				<Route
+					exact
+					path="/todoListAll"
+					// component={TodoListAll}
+					// token={jwtToken}
+					render={(routerProps) => (
+						<TodoListAll
+							token={jwtToken}
+							onLogout={() => {
+								const token = jwtToken;
+								setJwtToken(undefined);
+								history.push("./login");
+							}}
+						/>
+					)}
+				/>
 				<Route exact path="/" component={Login} />
 			</Switch>
-			
-			
-			{/* 
-			// <Login
-			// 	onLogin={(token) => {
-			// 		setJwtToken(token);
-			// 	}}
-			// /> */}
-
-			{/* {alert(jwtToken)} */}
-			{/* <Link to="/register">
-					<Register />
-				</Link> */}
 		</React.StrictMode>
 	);
 }

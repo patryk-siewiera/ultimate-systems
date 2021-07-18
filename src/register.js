@@ -33,6 +33,7 @@ export default function Register() {
 					/>
 					<input
 						{...register("password", {
+							required: true,
 							pattern: /^[A-Za-z]+$/i,
 						})}
 						placeholder="Password"
@@ -40,6 +41,7 @@ export default function Register() {
 					/>
 					<input
 						{...register("passwordRepeat", {
+							required: true,
 							pattern: /^[A-Za-z]+$/i,
 						})}
 						placeholder="Repeat password"

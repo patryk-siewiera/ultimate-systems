@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./login.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	Redirect,
+	useHistory,
+} from "react-router-dom";
 
 // -----move this later to api.js
 const basePath = "https://recruitment.ultimate.systems";
@@ -23,16 +30,32 @@ function login(data) {
 
 // ----- end of api.js
 
-export default function Login({ onLogin }) {
-	const { register, handleSubmit } = useForm();
+export default function Login({ onLogin, setJwtToken }) {
+	let isAuthenticated = false;
+	let history = useHistory();
+	const { register, handleSubmit } = useForm({
+		defaultValues: {
+			identifier: "testUser55",
+			password: "testUser15",
+		},
+	});
 	const onSubmit = (data) => {
 		login(data).then((loginResponse) => {
-			onLogin(loginResponse["jwt"]); // from insomnia
+			// onLogin(loginResponse["jwt"]); // from insomnia
 
 			if (loginResponse["jwt"] === undefined) {
+				isAuthenticated = false;
 				alert("Login or password incorrect - try again");
+				return isAuthenticated;
 			} else {
+				isAuthenticated = true;
 				alert("Logged Succesfuly");
+				// hook use history
+				const token = loginResponse["jwt"];
+				setJwtToken(token);
+				history.push("/todoListAll");
+
+				return isAuthenticated;
 			}
 		});
 	};
@@ -65,7 +88,7 @@ export default function Login({ onLogin }) {
 								type="submit"
 								value="Login"
 							/>
-						</div>{" "}
+						</div>
 					</form>
 					<div className="or">or</div>
 					<Link to="/register">

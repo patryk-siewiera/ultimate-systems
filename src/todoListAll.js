@@ -3,7 +3,7 @@ import "./todoListAll.css";
 import { useForm } from "react-hook-form";
 import { mockData } from "./mockData.js";
 
-export default function TodoListAll({ token }) {
+export default function TodoListAll({ token, onLogout }) {
 	// replace this when fetch will be implemented
 	const userData = mockData;
 	// end of comment
@@ -71,7 +71,15 @@ export default function TodoListAll({ token }) {
 	return (
 		<div>
 			<div className="todoList">ToDo-List</div>
-			<div className="logout">logout</div>
+			<a
+				href="#"
+				className="logout"
+				onClick={() => {
+					onLogout();
+				}}
+			>
+				logout
+			</a>
 			<div className="maxWidthList">
 				<input
 					{...register("search", {})}
