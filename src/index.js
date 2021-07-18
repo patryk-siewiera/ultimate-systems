@@ -11,13 +11,13 @@ import {
 	Link,
 	useHistory,
 } from "react-router-dom";
+import { getLists } from "./api";
 
 function App() {
-	const [jwtToken, setJwtToken] = useState("brak");
+	const [jwtToken, setJwtToken] = useState("");
 	const history = useHistory();
 	return (
 		<React.StrictMode>
-			<pre>{jwtToken}</pre>
 			<Switch>
 				<Route
 					exact

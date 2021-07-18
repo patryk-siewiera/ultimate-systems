@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./todoListAll.css";
 import { useForm } from "react-hook-form";
 import { mockData } from "./mockData.js";
+import { getLists } from "./api";
+import { useHistory } from "react-router-dom";
 
 export default function TodoListAll({ token, onLogout }) {
 	// replace this when fetch will be implemented
@@ -28,6 +30,7 @@ export default function TodoListAll({ token, onLogout }) {
 		return (
 			"Completed: " +
 			countIsDone +
+			2 +
 			" Uncompleted: " +
 			countIsNotDone +
 			" All: " +
@@ -38,6 +41,14 @@ export default function TodoListAll({ token, onLogout }) {
 	const { register, handleSubmit } = useForm();
 	const [search, setSearch] = useState("");
 	const [sortBy, setSortBy] = useState(0);
+
+	const history = useHistory();
+
+	useEffect(() => {
+		if (token === "") {
+			history.push("login");
+		}
+	}, [token]);
 
 	const data = useCallback(() => {
 		return new Promise((res) => {
@@ -120,6 +131,10 @@ export default function TodoListAll({ token, onLogout }) {
 							</div>
 						))}
 					</ul>
+					<div className="text-white">
+						{console.log(token)}
+						{/* {getLists(token)} */}
+					</div>
 				</div>
 			</div>
 		</div>
