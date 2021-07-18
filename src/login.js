@@ -53,7 +53,6 @@ export default function Login({ onLogin, setJwtToken }) {
 				const token = loginResponse["jwt"];
 				setJwtToken(token);
 				history.push("/todoListAll");
-
 				return isAuthenticated;
 			}
 		});

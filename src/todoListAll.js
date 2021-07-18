@@ -6,6 +6,14 @@ import { getLists } from "./api";
 import { useHistory } from "react-router-dom";
 import { DetailsModal } from "./detailsModal";
 
+function findElementByID(array, id) {
+	const elFound = array.find((el) => {
+		// debugger;
+		return el[1].id == id;
+	});
+	return elFound[1];
+}
+
 export default function TodoListAll({ token, onLogout }) {
 	// replace this when fetch will be implemented
 	const [userData, setUserData] = useState([]);
@@ -43,7 +51,8 @@ export default function TodoListAll({ token, onLogout }) {
 	const [search, setSearch] = useState("");
 	const [sortBy, setSortBy] = useState(0);
 	const [listDetails, setListDetails] = useState("");
-	const [showDetails, setShowDetails] = useState(true);
+	const [showDetails, setShowDetails] = useState(false);
+	const [id, setId] = useState("");
 
 	const history = useHistory();
 
@@ -120,7 +129,12 @@ export default function TodoListAll({ token, onLogout }) {
 					<ul>
 						{visibleData.map((item) => (
 							<div>
-								<li>
+								<li
+									onClick={() => {
+										setShowDetails(true);
+										setId(item[1].id);
+									}}
+								>
 									<div className="gridInside">
 										<div className="listName">
 											{item[1].name}
@@ -141,9 +155,10 @@ export default function TodoListAll({ token, onLogout }) {
 					</ul>
 				</div>
 			</div>
-			{showDetails && (
+			{/* {console.log(findElementByID(visibleData, "175"))} */}
+			{showDetails && visibleData && (
 				<DetailsModal
-					details={{ id: 0 }}
+					details={findElementByID(visibleData, id)}
 					onClose={() => setShowDetails(false)}
 				/>
 			)}

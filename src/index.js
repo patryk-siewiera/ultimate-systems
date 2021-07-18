@@ -9,6 +9,7 @@ import {
 	Switch,
 	Route,
 	Link,
+	Redirect,
 	useHistory,
 } from "react-router-dom";
 import { getLists } from "./api";
@@ -41,7 +42,9 @@ function App() {
 						/>
 					)}
 				/>
-				<Route exact path="/" component={Login} />
+				<Route exact path="/">
+					<Redirect to="login" />
+				</Route>
 			</Switch>
 		</React.StrictMode>
 	);
