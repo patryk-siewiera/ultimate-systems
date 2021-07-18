@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { mockData } from "./mockData.js";
 import { getLists } from "./api";
 import { useHistory } from "react-router-dom";
+import { DetailsModal } from "./detailsModal";
 
 export default function TodoListAll({ token, onLogout }) {
 	// replace this when fetch will be implemented
@@ -41,6 +42,8 @@ export default function TodoListAll({ token, onLogout }) {
 	const { register, handleSubmit } = useForm();
 	const [search, setSearch] = useState("");
 	const [sortBy, setSortBy] = useState(0);
+	const [listDetails, setListDetails] = useState("");
+	const [showDetails, setShowDetails] = useState(true);
 
 	const history = useHistory();
 
@@ -64,7 +67,6 @@ export default function TodoListAll({ token, onLogout }) {
 			return [{}, {}];
 		});
 	}, []);
-
 
 	const [visibleData, setVisibleData] = useState([]);
 
@@ -137,9 +139,14 @@ export default function TodoListAll({ token, onLogout }) {
 							</div>
 						))}
 					</ul>
-					{/* <div className="text-white">{getLists(token)}</div> */}
 				</div>
 			</div>
+			{showDetails && (
+				<DetailsModal
+					details={{ id: 0 }}
+					onClose={() => setShowDetails(false)}
+				/>
+			)}
 		</div>
 	);
 }
