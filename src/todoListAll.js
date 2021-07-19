@@ -73,7 +73,7 @@ export default function TodoListAll({ token, onLogout }) {
 
 	useEffect(() => {
 		if (token === "") {
-			history.push("login");
+			history.push("/ultimate-systems/login");
 		}
 	}, [token]);
 

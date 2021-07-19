@@ -21,9 +21,7 @@ function login(data) {
 export default function Login({ onLogin, setJwtToken }) {
 	let isAuthenticated = false;
 	let history = useHistory();
-	const { register, handleSubmit } = useForm({
-
-	});
+	const { register, handleSubmit } = useForm({});
 	const onSubmit = (data) => {
 		login(data).then((loginResponse) => {
 			// onLogin(loginResponse["jwt"]); // from insomnia
@@ -37,7 +35,7 @@ export default function Login({ onLogin, setJwtToken }) {
 				// hook use history
 				const token = loginResponse["jwt"];
 				setJwtToken(token);
-				history.push("/todoListAll");
+				history.push("/ultimate-systems/todoListAll");
 				return isAuthenticated;
 			}
 		});

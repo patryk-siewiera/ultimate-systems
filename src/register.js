@@ -18,7 +18,7 @@ export default function Register() {
 			if (res["jwt"] !== undefined) {
 				// TODO
 				// setJwtToken(res["jwt"]);
-				history.push("login");
+				history.push("/ultimate-systems/login");
 				alert("User created succesfully, please login ");
 			} else {
 				alert("Registration failed");

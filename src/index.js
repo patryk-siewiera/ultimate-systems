@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import {
-    BrowserRouter as Router, Redirect, Route, Switch, useHistory
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+	useHistory,
 } from "react-router-dom";
 import "./index.css";
 import Login from "./login";
@@ -16,13 +20,13 @@ function App() {
 			<Switch>
 				<Route
 					exact
-					path="/login"
+					path="/ultimate-systems/login"
 					render={() => <Login setJwtToken={setJwtToken} />}
 				/>
-				<Route exact path="/register" component={Register} />
+				<Route exact path="register" component={Register} />
 				<Route
 					exact
-					path="/todoListAll"
+					path="/ultimate-systems/todoListAll"
 					// component={TodoListAll}
 					// token={jwtToken}
 					render={(routerProps) => (
@@ -31,13 +35,16 @@ function App() {
 							onLogout={() => {
 								const token = jwtToken;
 								setJwtToken(undefined);
-								history.push("./login");
+								history.push("/ultimate-systems/login");
 							}}
 						/>
 					)}
 				/>
 				<Route exact path="/">
-					<Redirect to="login" />
+					<Redirect to="/ultimate-systems/login" />
+				</Route>
+				<Route exact path="/ultimate-systems">
+					<Redirect to="/ultimate-systems/login" />
 				</Route>
 			</Switch>
 		</React.StrictMode>
