@@ -7,7 +7,7 @@ body {
 	background-color: #2d2d2d;
 	top: 20px;
 	left: 20px;
-	height: calc(100vh - 180px);
+	height: calc(100vh - 50px);
 	width: calc(100vw - 40px);
 	/* in order to show scroll (its 100vh) we need to pass auto overflow (scollbar) */
 	overflow: auto;
@@ -22,6 +22,11 @@ body {
 
 .taskName {
 	width: 90%;
+	background-color: #2d2d2d;
+	color: white;
+	border-bottom: 4px solid #ff9900;
+	border-width: 1px;
+	border-radius: 0px;
 }
 
 .checkboxOneTask {
@@ -29,10 +34,12 @@ body {
 	width: 25px;
 	height: 25px;
 	cursor: pointer;
+	color: black;
 }
 
 .allTasks {
 	margin: 0px 0px 0px 70px;
+	position: sticky;
 }
 
 .newTaskInputBox {
@@ -47,11 +54,23 @@ body {
 }
 
 .cancelSmall {
-	padding: 10px 64px;
+	padding: 4px 30px;
 	background-color: #ff3d00;
 	border-radius: 4px;
-	margin-right: 40px;
-	position: static;
+	margin-right: 200px;
+	right: 0;
+}
+
+.buttonCancelAdd {
+	display: flex;
+	flex-direction: row-reverse;
+	right: 0;
+	margin: 20px;
+}
+
+.buttonCancelSave {
+	display: flex;
+	flex-direction: row;
 }
 
 .cancelSmall:hover {
@@ -59,10 +78,11 @@ body {
 }
 
 .addSmall {
-	padding: 10px 64px;
+	padding: 4px 40px;
 	background-color: #ff9900;
 	border-radius: 4px;
-	right: 300px;
+	right: 60px;
+	position: absolute;
 }
 
 .addSmall:hover {
@@ -73,10 +93,10 @@ body {
 	padding: 22px 64px;
 	color: #ff9900;
 	border-radius: 4px;
-	left: 0px;
-	bottom: 0px;
 	margin-bottom: 20px;
 	margin-right: 30px;
+	flex: 1;
+	font-size: 2rem;
 }
 
 .cancelBottom:hover {
@@ -87,13 +107,20 @@ body {
 	padding: 22px 64px;
 	background-color: #ff9900;
 	border-radius: 4px;
+	align-items: center;
 	right: 0px;
 	bottom: 0px;
-	position: relative;
+	margin-top: 30px;
+	margin-right: 60px;
 	margin-bottom: 20px;
-	margin-right: 30px;
+	flex: 1;
+}
+
+.emptySpace {
+	flex: 10;
 }
 
 .saveBottom:hover {
 	background-color: #81aa11;
+	right: 0;
 }

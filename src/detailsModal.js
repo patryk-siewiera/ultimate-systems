@@ -80,6 +80,7 @@ export default function DetailsModal(props) {
 				<button className="cancelBottom" onClick={props.onClose}>
 					CANCEL
 				</button>
+				<div className="emptySpace" />
 				<button
 					className="saveBottom"
 					onClick={(ev) => onConfirmSave()}
