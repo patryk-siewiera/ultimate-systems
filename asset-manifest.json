@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/ultimate-systems/static/css/main.2dd000f0.chunk.css",
-    "main.js": "/ultimate-systems/static/js/main.cc8b918f.chunk.js",
-    "main.js.map": "/ultimate-systems/static/js/main.cc8b918f.chunk.js.map",
+    "main.css": "/ultimate-systems/static/css/main.24569616.chunk.css",
+    "main.js": "/ultimate-systems/static/js/main.063aa6a2.chunk.js",
+    "main.js.map": "/ultimate-systems/static/js/main.063aa6a2.chunk.js.map",
     "runtime-main.js": "/ultimate-systems/static/js/runtime-main.5762afb1.js",
     "runtime-main.js.map": "/ultimate-systems/static/js/runtime-main.5762afb1.js.map",
     "static/js/2.3f6043fc.chunk.js": "/ultimate-systems/static/js/2.3f6043fc.chunk.js",
     "static/js/2.3f6043fc.chunk.js.map": "/ultimate-systems/static/js/2.3f6043fc.chunk.js.map",
     "index.html": "/ultimate-systems/index.html",
-    "static/css/main.2dd000f0.chunk.css.map": "/ultimate-systems/static/css/main.2dd000f0.chunk.css.map",
+    "static/css/main.24569616.chunk.css.map": "/ultimate-systems/static/css/main.24569616.chunk.css.map",
     "static/js/2.3f6043fc.chunk.js.LICENSE.txt": "/ultimate-systems/static/js/2.3f6043fc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.5762afb1.js",
     "static/js/2.3f6043fc.chunk.js",
-    "static/css/main.2dd000f0.chunk.css",
-    "static/js/main.cc8b918f.chunk.js"
+    "static/css/main.24569616.chunk.css",
+    "static/js/main.063aa6a2.chunk.js"
   ]
 }
