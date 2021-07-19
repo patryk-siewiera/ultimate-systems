@@ -28,7 +28,7 @@ form {
 .goBack {
 	font-size: 3rem;
 	color: white;
-	position: fixed;
+	position: absolute;
 	margin-left: 3rem;
 	cursor: pointer;
 	font-weight: bold;

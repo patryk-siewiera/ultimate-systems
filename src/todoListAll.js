@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getLists } from "./api";
 import { DetailsModal } from "./detailsModal";
 import "./todoListAll.css";
-import { updateList } from "./api";
+import { updateList, createNewList } from "./api";
 
 function findElementByID(array, id) {
 	const elFound = array.find((el) => {
@@ -19,6 +19,7 @@ export default function TodoListAll({ token, onLogout }) {
 	const [userData, setUserData] = useState([]);
 	// const userData = mockData;
 	// end of comment
+	const [newTodoListDetails, setNewTodoListDetails] = useState({});
 
 	function dateFormatter(e) {
 		let outputDate = new Date(Date.parse(e));
@@ -52,7 +53,8 @@ export default function TodoListAll({ token, onLogout }) {
 	const [sortBy, setSortBy] = useState(0);
 	const [listDetails, setListDetails] = useState("");
 	const [showDetails, setShowDetails] = useState(false);
-	const [id, setId] = useState("");
+	const [id, setId] = useState();
+	const [showNewModal, setShowNewModal] = useState(false);
 
 	const history = useHistory();
 
@@ -99,6 +101,13 @@ export default function TodoListAll({ token, onLogout }) {
 		});
 		// debugger;
 		setShowDetails(false);
+	}
+
+	function onCreateTodo(subtasksList, nameList) {
+		return createNewList(nameList, subtasksList, token).then(() => {
+			fetchData();
+			setShowNewModal(false);
+		});
 	}
 
 	return (
@@ -162,12 +171,32 @@ export default function TodoListAll({ token, onLogout }) {
 					</ul>
 				</div>
 			</div>
+			<div
+				className="addNewButton"
+				onClick={() => {
+					setShowNewModal(true);
+					// setId("");
+				}}
+			>
+				+
+			</div>
 			{showDetails && visibleData && (
 				<DetailsModal
 					details={findElementByID(visibleData, id)}
 					onClose={() => setShowDetails(false)}
 					onConfirmSave={(listTask, nameList) =>
 						onConfirmSave(listTask, nameList)
+					}
+				/>
+			)}
+			{showNewModal && (
+				<DetailsModal
+					details={newTodoListDetails}
+					onClose={() => setShowNewModal(false)}
+					onConfirmSave={(listTask, nameList) =>
+						onCreateTodo(listTask, nameList).then(() => {
+							setNewTodoListDetails({});
+						})
 					}
 				/>
 			)}

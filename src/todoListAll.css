@@ -62,3 +62,26 @@ li:hover {
 .counter {
 	text-align: right;
 }
+
+.addNewButton {
+	position: fixed;
+	display: block;
+	right: 10rem;
+	bottom: 10rem;
+	height: 75px;
+	width: 75px;
+	background-color: white;
+	border-radius: 50%;
+	color: orange;
+	font-size: 4rem;
+	text-align: center;
+	line-height: 100%;
+	cursor: pointer;
+	overflow: hidden;
+	box-shadow: 10px 5px 5px rgb(54, 54, 54);
+}
+
+.addNewButton:hover {
+	background-color: rgba(233, 202, 190, 0.432);
+	color: red;
+}

@@ -40,7 +40,7 @@ export default function DetailsModal(props) {
 	const { details, onConfirmSave } = props;
 	const [nameList, setNameList] = useState(props?.details?.name);
 	const [tempTasksSublist, setTempTasksSublist] = useState(
-		deepcopy(details.task)
+		deepcopy(details?.task || [])
 	);
 	if (!details) {
 		// console.error("error", props);
@@ -74,7 +74,14 @@ export default function DetailsModal(props) {
 			</div>
 			<div className="buttonCancelAdd">
 				<button className="cancelSmall">CANCEL</button>
-				<button className="addSmall">ADD</button>
+				<button
+					className="addSmall"
+					onClick={() => {
+						setTempTasksSublist([...tempTasksSublist, {}]);
+					}}
+				>
+					ADD
+				</button>
 			</div>
 			<div className="buttonCancelSave">
 				<button className="cancelBottom" onClick={props.onClose}>
@@ -84,7 +91,6 @@ export default function DetailsModal(props) {
 				<button
 					className="saveBottom"
 					onClick={(ev) => {
-						// debugger;
 						onConfirmSave(tempTasksSublist, nameList);
 					}}
 					title={JSON.stringify(tempTasksSublist, null, 2)}
