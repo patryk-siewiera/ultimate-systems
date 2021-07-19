@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/ultimate-systems/static/css/main.595b7099.chunk.css",
-    "main.js": "/ultimate-systems/static/js/main.ea9e7096.chunk.js",
+    "main.js": "/ultimate-systems/static/js/main.a3860ae8.chunk.js",
     "main.css.map": "/ultimate-systems/static/css/main.595b7099.chunk.css.map",
-    "main.js.map": "/ultimate-systems/static/js/main.ea9e7096.chunk.js.map",
+    "main.js.map": "/ultimate-systems/static/js/main.a3860ae8.chunk.js.map",
     "runtime-main.js": "/ultimate-systems/static/js/runtime-main.da74ee01.js",
     "runtime-main.js.map": "/ultimate-systems/static/js/runtime-main.da74ee01.js.map",
-    "static/js/2.9f1b5a76.chunk.js": "/ultimate-systems/static/js/2.9f1b5a76.chunk.js",
-    "static/js/2.9f1b5a76.chunk.js.map": "/ultimate-systems/static/js/2.9f1b5a76.chunk.js.map",
+    "static/js/2.3f46d7ff.chunk.js": "/ultimate-systems/static/js/2.3f46d7ff.chunk.js",
+    "static/js/2.3f46d7ff.chunk.js.map": "/ultimate-systems/static/js/2.3f46d7ff.chunk.js.map",
     "index.html": "/ultimate-systems/index.html"
   },
   "entrypoints": [
     "static/js/runtime-main.da74ee01.js",
-    "static/js/2.9f1b5a76.chunk.js",
+    "static/js/2.3f46d7ff.chunk.js",
     "static/css/main.595b7099.chunk.css",
-    "static/js/main.ea9e7096.chunk.js"
+    "static/js/main.a3860ae8.chunk.js"
   ]
 }
