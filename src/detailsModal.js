@@ -73,7 +73,15 @@ export default function DetailsModal(props) {
 				))}
 			</div>
 			<div className="buttonCancelAdd">
-				<button className="cancelSmall">CANCEL</button>
+				<button
+					className="cancelSmall"
+					onClick={() => {
+						const arrayCopy = tempTasksSublist.slice(0, -1);
+						setTempTasksSublist([...arrayCopy]);
+					}}
+				>
+					CANCEL
+				</button>
 				<button
 					className="addSmall"
 					onClick={() => {
