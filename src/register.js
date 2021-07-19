@@ -1,10 +1,30 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+
+import { registerUser } from "./api";
 
 export default function Register() {
+	// compare passwords - hookforms, custom validator
 	const { register, handleSubmit } = useForm();
-	const onSubmit = (data) => console.log(data);
+	const history = useHistory();
+	const onSubmit = (data) => {
+		console.log(data);
+		registerUser({
+			username: data.username,
+			email: data.email,
+			password: data.password,
+		}).then((res) => {
+			if (res["jwt"] !== undefined) {
+				// TODO
+				// setJwtToken(res["jwt"]);
+				history.push("login");
+				alert("User created succesfully, please login ");
+			} else {
+				alert("Registration failed");
+			}
+		});
+	};
 
 	return (
 		<div>
@@ -24,6 +44,7 @@ export default function Register() {
 						placeholder="Username"
 					/>
 					<input
+						type="email"
 						{...register("email", {
 							required: true,
 							maxLength: 20,
@@ -34,7 +55,6 @@ export default function Register() {
 					<input
 						{...register("password", {
 							required: true,
-							pattern: /^[A-Za-z]+$/i,
 						})}
 						placeholder="Password"
 						type="password"
@@ -42,7 +62,6 @@ export default function Register() {
 					<input
 						{...register("passwordRepeat", {
 							required: true,
-							pattern: /^[A-Za-z]+$/i,
 						})}
 						placeholder="Repeat password"
 						type="password"
