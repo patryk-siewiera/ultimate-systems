@@ -8,7 +8,7 @@ export function registerUser(registrationData) {
 	) {
 		throw new Error({ err: "Error missing data", data: registrationData });
 	}
-	return fetch(`${BASE_URL}auth/local/register`, {
+	return fetch(BASE_URL + "auth/local/register", {
 		method: "POST",
 		headers: {
 			accept: "application/json",
@@ -20,9 +20,26 @@ export function registerUser(registrationData) {
 	});
 }
 
+export function updateList(id, nameList, updateListData, token) {
+	const request = fetch(BASE_URL + "to-do-lists/" + id, {
+		method: "PUT",
+		headers: {
+			accept: "application/json",
+			"Content-Type": "application/json",
+
+			Authorization: "Bearer " + token,
+		},
+		body: JSON.stringify({ name: nameList, task: updateListData }),
+	}).then((response) => {
+		return response.json();
+	});
+
+	return request;
+}
+
 export function getLists(token) {
 	let bearer = "Bearer " + token;
-	const request = fetch("https://recruitment.ultimate.systems/to-do-lists", {
+	const request = fetch(BASE_URL + "to-do-lists", {
 		method: "GET",
 		headers: {
 			accept: "application/json",

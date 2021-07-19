@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { getLists } from "./api";
 import { DetailsModal } from "./detailsModal";
 import "./todoListAll.css";
+import { updateList } from "./api";
 
 function findElementByID(array, id) {
 	const elFound = array.find((el) => {
@@ -55,11 +56,16 @@ export default function TodoListAll({ token, onLogout }) {
 
 	const history = useHistory();
 
-	useEffect(() => {
+	//function to save data to
+	function fetchData() {
 		const Udata = getLists(token); // dodac await i linjka wyzej bedzie juz console.log(Udata)
 		Udata.then((response) => {
 			setUserData(response);
 		});
+	}
+
+	useEffect(() => {
+		fetchData();
 	}, []);
 
 	useEffect(() => {
@@ -67,14 +73,6 @@ export default function TodoListAll({ token, onLogout }) {
 			history.push("login");
 		}
 	}, [token]);
-
-	const data = useCallback(() => {
-		return new Promise((res) => {
-			const auth = token;
-			// api.getTodos(token)
-			return [{}, {}];
-		});
-	}, []);
 
 	const [visibleData, setVisibleData] = useState([]);
 
@@ -94,6 +92,14 @@ export default function TodoListAll({ token, onLogout }) {
 			});
 		setVisibleData(data);
 	}, [userData, search, sortBy]);
+
+	function onConfirmSave(subtasksList, nameList) {
+		updateList(id, nameList, subtasksList, token).then(() => {
+			fetchData();
+		});
+		// debugger;
+		setShowDetails(false);
+	}
 
 	return (
 		<div>
@@ -160,6 +166,9 @@ export default function TodoListAll({ token, onLogout }) {
 				<DetailsModal
 					details={findElementByID(visibleData, id)}
 					onClose={() => setShowDetails(false)}
+					onConfirmSave={(listTask, nameList) =>
+						onConfirmSave(listTask, nameList)
+					}
 				/>
 			)}
 		</div>

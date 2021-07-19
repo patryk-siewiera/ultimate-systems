@@ -11,8 +11,8 @@ function MapAllTasks({ listDetails, onNameChange }) {
 				className="checkboxOneTask"
 				checked={checked}
 				onClick={() => {
-					listDetails[0].isDone = !listDetails.isDone;
-					setChecked(listDetails.name);
+					listDetails.isDone = !listDetails.isDone;
+					setChecked(listDetails.isDone);
 				}}
 			/>
 			<input
@@ -83,7 +83,10 @@ export default function DetailsModal(props) {
 				<div className="emptySpace" />
 				<button
 					className="saveBottom"
-					onClick={(ev) => onConfirmSave()}
+					onClick={(ev) => {
+						// debugger;
+						onConfirmSave(tempTasksSublist, nameList);
+					}}
 					title={JSON.stringify(tempTasksSublist, null, 2)}
 				>
 					SAVE
@@ -94,4 +97,3 @@ export default function DetailsModal(props) {
 }
 
 export { DetailsModal };
-
