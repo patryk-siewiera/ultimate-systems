@@ -39,6 +39,9 @@ li:hover {
 	cursor: pointer;
 }
 
+.imgLogout {
+	width: 6rem;
+}
 .maxWidthList {
 	max-width: 80%;
 	margin: auto;

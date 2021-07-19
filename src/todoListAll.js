@@ -5,6 +5,7 @@ import { getLists } from "./api";
 import { DetailsModal } from "./detailsModal";
 import "./todoListAll.css";
 import { updateList, createNewList } from "./api";
+import logout from "./img/logout.png";
 
 function findElementByID(array, id) {
 	const elFound = array.find((el) => {
@@ -120,7 +121,7 @@ export default function TodoListAll({ token, onLogout }) {
 					onLogout();
 				}}
 			>
-				logout
+				<img src={logout} className="imgLogout" />
 			</a>
 			<div className="maxWidthList">
 				<input

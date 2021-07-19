@@ -1,17 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-    Link, useHistory
-} from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./login.css";
 
 // -----move this later to api.js
 const basePath = "https://recruitment.ultimate.systems";
-
-const data0 = {
-	identifier: "testUser55",
-	password: "testUser15",
-};
 
 function login(data) {
 	return fetch(`${basePath}/auth/local`, {
@@ -29,10 +22,7 @@ export default function Login({ onLogin, setJwtToken }) {
 	let isAuthenticated = false;
 	let history = useHistory();
 	const { register, handleSubmit } = useForm({
-		defaultValues: {
-			identifier: "testUser55",
-			password: "testUser15",
-		},
+
 	});
 	const onSubmit = (data) => {
 		login(data).then((loginResponse) => {
