@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
-import "./todoListAll.css";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { mockData } from "./mockData.js";
-import { getLists } from "./api";
 import { useHistory } from "react-router-dom";
+import { getLists } from "./api";
 import { DetailsModal } from "./detailsModal";
+import "./todoListAll.css";
 
 function findElementByID(array, id) {
 	const elFound = array.find((el) => {

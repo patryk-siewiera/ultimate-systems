@@ -94,3 +94,4 @@ export default function DetailsModal(props) {
 }
 
 export { DetailsModal };
+

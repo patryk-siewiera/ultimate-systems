@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import "./login.css";
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-	Redirect,
-	useHistory,
+    Link, useHistory
 } from "react-router-dom";
+import "./login.css";
 
 // -----move this later to api.js
 const basePath = "https://recruitment.ultimate.systems";
